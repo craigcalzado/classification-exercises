@@ -12,13 +12,14 @@ from env import host, user, password
 def get_titanic_data(user, password, host):
     filename = "titanic.csv"
     if os.path.isfile(filename):
+        print("Let me get that for you...")
         return pd.read_csv(filename)
-    else:
-        data = 'titanic_db'
-        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
-        titanic_data = pd.read_sql('SELECT * FROM passengers', url)
-        titanic_data.to_csv(filename)
-        return titanic_data
+    print("Sorry, nothing on file, let me create one for you...")
+    data = 'titanic_db'
+    url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+    titanic_data = pd.read_sql('SELECT * FROM passengers', url)
+    titanic_data.to_csv(filename)
+    return titanic_data
 
 get_titanic_data(user, password, host)
 
@@ -26,13 +27,14 @@ get_titanic_data(user, password, host)
 def get_iris_data(user, password, host):
     filename = "iris.csv"
     if os.path.isfile(filename):
+        print("Let me get that for you...")
         return pd.read_csv(filename)
-    else:
-        data = 'iris_db'
-        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
-        iris_data = pd.read_sql('SELECT * FROM species', url)
-        iris_data.to_csv(filename)
-        return iris_data
+    print("Sorry, nothing on file, let me create one for you...")
+    data = 'iris_db'
+    url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+    iris_data = pd.read_sql('SELECT * FROM species', url)
+    iris_data.to_csv(filename)
+    return iris_data
 
 get_iris_data(user, password, host)
 
@@ -41,13 +43,14 @@ get_iris_data(user, password, host)
 def get_telco_data(user, password, host):
     filename = "telco.csv"
     if os.path.isfile(filename):
+        print("Let me get that for you...")
         return pd.read_csv(filename)
-    else:
-        data = 'telco_churn'
-        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
-        query = 'SELECT * FROM customers JOIN contract_types USING (contract_type_id) JOIN payment_types USING (payment_type_id) JOIN internet_service_types USING (internet_service_type_id)'
-        telco_data = pd.read_sql(query, url)
-        telco_data.to_csv(filename)
-        return telco_data
+    print("Sorry, nothing on file, let me create one for you...")
+    data = 'telco_churn'
+    url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+    query = 'SELECT * FROM customers JOIN contract_types USING (contract_type_id) JOIN payment_types USING (payment_type_id) JOIN internet_service_types USING (internet_service_type_id)'
+    telco_data = pd.read_sql(query, url)
+    telco_data.to_csv(filename)
+    return telco_data
 
 get_telco_data(user, password, host)

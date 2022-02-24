@@ -4,5 +4,50 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy.stats as stats
 import pydataset as pds
+import os
 
 from env import host, user, password
+
+# Make a function named get_titanic_data that returns the titanic data from the codeup data science database as a pandas data frame.
+def get_titanic_data(user, password, host):
+    filename = "titanic.csv"
+    if os.path.isfile(filename):
+        return pd.read_csv(filename)
+    else:
+        data = 'titanic_db'
+        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+        titanic_data = pd.read_sql('SELECT * FROM passengers', url)
+        titanic_data.to_csv(filename)
+        return titanic_data
+
+get_titanic_data(user, password, host)
+
+# Make a function named get_iris_data that returns the data from the iris_db on the codeup data science database as a pandas dataframe.
+def get_iris_data(user, password, host):
+    filename = "iris.csv"
+    if os.path.isfile(filename):
+        return pd.read_csv(filename)
+    else:
+        data = 'iris_db'
+        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+        iris_data = pd.read_sql('SELECT * FROM species', url)
+        iris_data.to_csv(filename)
+        return iris_data
+
+get_iris_data(user, password, host)
+
+# Make a function named get_telco_data that returns the data from the telco_churn database in SQL. 
+# In your SQL, be sure to join all 4 tables together, so that the resulting dataframe contains all the contract, payment, and internet service options.
+def get_telco_data(user, password, host):
+    filename = "telco.csv"
+    if os.path.isfile(filename):
+        return pd.read_csv(filename)
+    else:
+        data = 'telco_churn'
+        url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
+        query = 'SELECT * FROM customers JOIN contract_types USING (contract_type_id) JOIN payment_types USING (payment_type_id) JOIN internet_service_types USING (internet_service_type_id)'
+        telco_data = pd.read_sql(query, url)
+        telco_data.to_csv(filename)
+        return telco_data
+
+get_telco_data(user, password, host)

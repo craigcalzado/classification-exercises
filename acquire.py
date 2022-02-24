@@ -48,7 +48,12 @@ def get_telco_data(user, password, host):
     print("Sorry, nothing on file, let me create one for you...")
     data = 'telco_churn'
     url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
-    query = 'SELECT * FROM customers JOIN contract_types USING (contract_type_id) JOIN payment_types USING (payment_type_id) JOIN internet_service_types USING (internet_service_type_id)'
+    query = '''
+    SELECT * FROM customers 
+    JOIN contract_types USING (contract_type_id) 
+    JOIN payment_types USING (payment_type_id) 
+    JOIN internet_service_types USING (internet_service_type_id)
+    '''
     telco_data = pd.read_sql(query, url)
     telco_data.to_csv(filename)
     return telco_data

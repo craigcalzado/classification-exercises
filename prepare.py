@@ -27,7 +27,7 @@ prep_titanic(df)
 
 def prep_telco(df):
     df = acquire.get_telco_data()
-    df = df.drop(columns=['Unnamed: 0', 'internet_service_type_id', 'payment_type_id', 'contract_type_id'])
+    df = df.drop(columns=['Unnamed: 0', 'internet_service_type_id', 'payment_type_id', 'contract_type_id', 'multiple_lines'])
     dummy_df = pd.get_dummies(df[['gender', 'payment_type', 'contract_type', 'internet_service_type']], drop_first=True)
     df = pd.concat([df, dummy_df], axis=1)
     return df.drop(columns=['gender', 'payment_type', 'contract_type', 'internet_service_type'])

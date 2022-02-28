@@ -4,10 +4,9 @@ import warnings
 warnings.filterwarnings('ignore')
 import acquire
 
-df = data
+df = acquire.get_iris_data() # utlize acquire.py to load the iris data.
 
 def prep_iris(df): # create a function named prep_iris that accepts the untransformed iris data, and returns the data with the transformations above applied.
-    df = acquire.get_iris_data() # utlize acquire.py to load the iris data.
     df = df.drop(columns=['species_id', 'Unnamed: 0']) # drop the species_id and measurement_id columns.
     df = df.rename(columns={'species_name': 'species'}) # rename the species_name column to just species.
     dummy_df = pd.get_dummies(df[['species']], drop_first=True) # create dummy variables of the species name and concatenate onto the iris dataframe. (This is for practice, we don't always have to encode the target, but if we used species as a feature, we would need to encode it).
@@ -24,10 +23,12 @@ def prep_titanic(df):
     dummy_df = pd.get_dummies(df[['sex', 'embark_town']], drop_first=[True,True])
     df = pd.concat([df, dummy_df], axis=1)
     return df.drop(columns=['sex', 'embark_town'])
+prep_titanic(df)
 
 def prep_telco(df):
     df = acquire.get_telco_data()
     df = df.drop(columns=['Unnamed: 0', 'internet_service_type_id', 'payment_type_id', 'contract_type_id'])
-    dummy_df = pd.get_dummies(df[['payment_type', 'contract_type', 'internet_service_type']], drop_first=True)
+    dummy_df = pd.get_dummies(df[['gender', 'payment_type', 'contract_type', 'internet_service_type']], drop_first=True)
     df = pd.concat([df, dummy_df], axis=1)
-    return df.drop(columns=['payment_type', 'contract_type', 'internet_service_type'])
+    return df.drop(columns=['gender', 'payment_type', 'contract_type', 'internet_service_type'])
+prep_telco(df)

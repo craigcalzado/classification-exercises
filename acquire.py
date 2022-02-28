@@ -17,7 +17,7 @@ def get_titanic_data(use_cache=True):
     titanic_data.to_csv(filename)
     return titanic_data
 
-get_titanic_data(user, password, host)
+get_titanic_data()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Make a function named get_iris_data that returns the data from the iris_db on the codeup data science database as a pandas dataframe.
 
@@ -33,7 +33,7 @@ def get_iris_data(use_cache=True):
     iris_data.to_csv(filename)
     return iris_data
 
-get_iris_data(user, password, host)
+get_iris_data()
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Make a function named get_telco_data that returns the data from the telco_churn database in SQL. 
 # In your SQL, be sure to join all 4 tables together, so that the resulting dataframe contains all the contract, payment, and internet service options.
@@ -56,4 +56,4 @@ def get_telco_data(use_cache=True):
     telco_data.to_csv(filename)
     return telco_data
 
-get_telco_data(user, password, host)
+get_telco_data()

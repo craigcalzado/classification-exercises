@@ -1,10 +1,10 @@
+
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 import acquire
 
-
-
+df = data
 
 def prep_iris(df): # create a function named prep_iris that accepts the untransformed iris data, and returns the data with the transformations above applied.
     df = acquire.get_iris_data() # utlize acquire.py to load the iris data.

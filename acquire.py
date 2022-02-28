@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 from env import host, user, password
------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 # Make a function named get_titanic_data that returns the titanic data from the codeup data science database as a pandas data frame.
 
 def get_titanic_data(user, password, host):
@@ -18,7 +18,7 @@ def get_titanic_data(user, password, host):
     return titanic_data
 
 get_titanic_data(user, password, host)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Make a function named get_iris_data that returns the data from the iris_db on the codeup data science database as a pandas dataframe.
 
 def get_iris_data(user, password, host):
@@ -34,7 +34,7 @@ def get_iris_data(user, password, host):
     return iris_data
 
 get_iris_data(user, password, host)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Make a function named get_telco_data that returns the data from the telco_churn database in SQL. 
 # In your SQL, be sure to join all 4 tables together, so that the resulting dataframe contains all the contract, payment, and internet service options.
 

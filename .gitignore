@@ -5,3 +5,4 @@ __pycache__
 *.csv
 *.xlsx
 prepare.ipynb
+tidy_data_lesson.ipynb

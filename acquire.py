@@ -29,7 +29,7 @@ def get_iris_data(use_cache=True):
     print("Sorry, nothing on file, let me create one for you...")
     data = 'iris_db'
     url = f'mysql+pymysql://{user}:{password}@{host}/{data}'
-    iris_data = pd.read_sql('SELECT * FROM species', url)
+    iris_data = pd.read_sql('SELECT * FROM species s JOIN measurements m ON s.species_id = m.measurement_id', url)
     iris_data.to_csv(filename)
     return iris_data
 

@@ -20,11 +20,6 @@ def prep_iris(df): # create a function named prep_iris that accepts the untransf
 
 prep_iris(df) # call the function prep_iris to apply the transformations to the iris data.
 
-def split_iris(df):
-    train_validate, test = train_test_split(df, test_size=.2, random_state=123, stratify=df.species)
-    train, validate = train_test_split(train_validate, test_size=.3, random_state=123, stratify=train_validate.species)
-    return train, validate, test
-split_iris(df)
 #------------------------------------------------------------------------------------------------------------
 
 def prep_titanic(df):

@@ -11,8 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 
 df = acquire.get_iris_data() # utlize acquire.py to load the iris data.
-
+df
 def prep_iris(df): # create a function named prep_iris that accepts the untransformed iris data, and returns the data with the transformations above applied.
+    df = acquire.get_iris_data() # get the iris data
     df = df.drop(columns=['species_id', 'measurement_id', 'Unnamed: 0']) # drop the species_id and measurement_id columns.
     df = df.rename(columns={'species_name': 'species'}) # rename the species_name column to just species.
     dummy_df = pd.get_dummies(df[['species']], drop_first=True) # create dummy variables of the species name and concatenate onto the iris dataframe. (This is for practice, we don't always have to encode the target, but if we used species as a feature, we would need to encode it).
@@ -22,10 +23,9 @@ def prep_iris(df): # create a function named prep_iris that accepts the untransf
 # prep_iris(df) # call the function prep_iris to apply the transformations to the iris data.
 
 def split_iris_data(df):
-    train, test = train_test_split(df, test_size=0.2, random_state=789)
-    train, validate = train_test_split(train, test_size=0.3, random_state=789)
+    train, test = train_test_split(df, test_size=0.2, random_state=789, stratify=df.species)
+    train, validate = train_test_split(train, test_size=0.3, random_state=789, stratify=train.species)
     return train, validate, test
-
 #------------------------------------------------------------------------------------------------------------
 
 def prep_titanic(df):
@@ -42,8 +42,6 @@ def split_titanic_data(df):
     train, test = train_test_split(df, test_size=.2, random_state=789, stratify=df.survived)
     train, validate = train_test_split(train, test_size=.3, random_state=789, stratify=train.survived)
     return train, validate, test
-split_titanic_data(df)
-
 
 def prep_telco(df):
     df = acquire.get_telco_data()
@@ -58,6 +56,5 @@ def split_dataframe(df):
    train, test = train_test_split(df, test_size=0.2, random_state=789)
    train, validate = train_test_split(train, test_size=0.3, random_state=789)
    return train, validate, test 
-
 
 #------------------------------------------------------------------------------------------------------------

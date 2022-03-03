@@ -10,8 +10,6 @@ import acquire
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 
-df = acquire.get_iris_data() # utlize acquire.py to load the iris data.
-df
 def prep_iris(df): # create a function named prep_iris that accepts the untransformed iris data, and returns the data with the transformations above applied.
     df = acquire.get_iris_data() # get the iris data
     df = df.drop(columns=['species_id', 'measurement_id', 'Unnamed: 0']) # drop the species_id and measurement_id columns.
@@ -26,6 +24,8 @@ def split_iris_data(df):
     train, test = train_test_split(df, test_size=0.2, random_state=789, stratify=df.species)
     train, validate = train_test_split(train, test_size=0.3, random_state=789, stratify=train.species)
     return train, validate, test
+
+
 #------------------------------------------------------------------------------------------------------------
 
 def prep_titanic(df):

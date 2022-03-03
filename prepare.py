@@ -68,18 +68,4 @@ def split_dataframe(df):
    return train, validate, test 
 
 
-
-# how many lottery tickets would you have to buy in order to win.
-purchase each day
-citys with the tickets
-how much to Invest
-    
-    # how many lottery tickets would you have to buy in order to win.
-    purchase each day
-    citys with the tickets
-    how much to Invest
-
-beteen how many people to split the pot
-everyone in the US dived by 2
-in the regioun
-
+#------------------------------------------------------------------------------------------------------------

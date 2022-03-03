@@ -11,7 +11,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 
 df = acquire.get_iris_data() # utlize acquire.py to load the iris data.
-df.head()
 
 def prep_iris(df): # create a function named prep_iris that accepts the untransformed iris data, and returns the data with the transformations above applied.
     df = df.drop(columns=['species_id', 'measurement_id', 'Unnamed: 0']) # drop the species_id and measurement_id columns.
@@ -20,16 +19,12 @@ def prep_iris(df): # create a function named prep_iris that accepts the untransf
     df = pd.concat([df, dummy_df], axis=1) # concatenate the iris dataframe with the dummy variables.
     return df
 
-prep_iris(df) # call the function prep_iris to apply the transformations to the iris data.
-df.head()
-split_data(df)
+# prep_iris(df) # call the function prep_iris to apply the transformations to the iris data.
 
 def split_iris_data(df):
     train, test = train_test_split(df, test_size=0.2, random_state=789)
     train, validate = train_test_split(train, test_size=0.3, random_state=789)
     return train, validate, test
-split_iris_data(df)
-
 
 #------------------------------------------------------------------------------------------------------------
 
@@ -41,7 +36,6 @@ def prep_titanic(df):
     dummy_df = pd.get_dummies(df[['sex', 'embark_town']], drop_first=[True,True])
     df = pd.concat([df, dummy_df], axis=1)
     return df.drop(columns=['sex', 'embark_town'])
-df = prep_titanic(df)
 
 #split titanic data
 def split_titanic_data(df):
@@ -50,7 +44,6 @@ def split_titanic_data(df):
     return train, validate, test
 split_titanic_data(df)
 
-split_dataframe(df)
 
 def prep_telco(df):
     df = acquire.get_telco_data()
@@ -58,7 +51,6 @@ def prep_telco(df):
     dummy_df = pd.get_dummies(df[['gender', 'payment_type', 'contract_type', 'internet_service_type']], drop_first=True)
     df = pd.concat([df, dummy_df], axis=1)
     return df.drop(columns=['gender', 'payment_type', 'contract_type', 'internet_service_type'])
-df = prep_telco(df)
 
 
 # function to split dataframes

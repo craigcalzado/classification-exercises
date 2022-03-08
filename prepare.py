@@ -37,6 +37,14 @@ def prep_titanic(df):
     df = pd.concat([df, dummy_df], axis=1)
     return df.drop(columns=['sex', 'embark_town'])
 
+def prep_titanic_age(df):
+    df = acquire.get_titanic_data()
+    df = df.drop(columns=['deck', 'embarked', 'class', 'passenger_id', 'Unnamed: 0'])
+    df = df.dropna(subset=['age'])
+    df['age'] = df.age.fillna(value=df.age.mean())
+    df['age'] = df.age.astype(int)
+    return df
+
 #split titanic data
 def split_titanic_data(df):
     train, test = train_test_split(df, test_size=.2, random_state=789, stratify=df.survived)

@@ -1,5 +1,6 @@
 
 from email.errors import InvalidBase64LengthDefect
+from operator import concat
 from pdb import post_mortem
 from wsgiref import validate
 import pandas as pd
@@ -39,11 +40,16 @@ def prep_titanic(df):
 
 def prep_titanic_age(df):
     df = acquire.get_titanic_data()
+    # fill in missing values
+    df['embark_town'] = df.embark_town.fillna(value='Southampton')
+    dummy_df = pd.get_dummies(df[['sex', 'embark_town']], drop_first=[True,True])
+    df = pd.concat([df, dummy_df], axis=1)
+     # fill missing age values with mean utilizing imputer
+    imputer = SimpleImputer(strategy='mean')
+    df['age'] = imputer.fit_transform(df[['age']])
+
     df = df.drop(columns=['deck', 'embarked', 'class', 'passenger_id', 'Unnamed: 0'])
-    df = df.dropna(subset=['age'])
-    df['age'] = df.age.fillna(value=df.age.mean())
-    df['age'] = df.age.astype(int)
-    return df
+    return df.drop(columns=['sex', 'embark_town'])
 
 #split titanic data
 def split_titanic_data(df):
